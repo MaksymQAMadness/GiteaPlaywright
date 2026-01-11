@@ -2,7 +2,7 @@ import { test, expect } from "../util/fixtures/app";
 import { faker } from "@faker-js/faker";
 import { generateUniqueEmail } from "../util/data-generation/emails";
 import { RegisterMessages } from "../test-data/messages/register-messages";
-import RegisterPage from "../pom/pages/registerPage";
+import RegisterPage from "../pom/pages/RegisterPage";
 
 
 test.describe('user login tests', () => {
