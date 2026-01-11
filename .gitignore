@@ -11,5 +11,4 @@ node_modules/
 allure-report/
 results/
 .states
-users/
 history/
