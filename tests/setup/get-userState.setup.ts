@@ -1,8 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { test, expect } from "../../util//fixtures/app";
 import { generateUniqueEmail } from '../../util/data-generation/emails';
-import * as fs from 'fs';
-import path from 'path';
 import saveUserData from '../../util/data-generation/saveUserData';
 
 
