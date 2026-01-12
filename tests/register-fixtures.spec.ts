@@ -1,4 +1,4 @@
-import { test, expect } from '../util/fixtures/PageObject';
+import { test, expect } from '../util/fixtures/pageObject';
 import { faker } from '@faker-js/faker';
 import { RegisterMessages } from '../test-data/messages/register-messages';
 import { generateUniqueEmail } from '../util/data-generation/emails';

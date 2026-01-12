@@ -1,5 +1,5 @@
 import { test as base, Page } from '@playwright/test';
-import RegisterPage from '../../pom/pages/registerPage';
+import RegisterPage from '../../pom/pages/RegisterPage';
 import LoginPage from '../../pom/pages/LoginPage';
 import RepositoryPage from '../../pom/pages/RepositoryPage';
 import RepositorySettingsPage from '../../pom/pages/RepositorySettingsPage';
