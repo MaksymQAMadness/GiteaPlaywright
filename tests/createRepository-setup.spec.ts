@@ -2,9 +2,17 @@ import { test, expect } from "../util/fixtures/app";
 import { faker } from "@faker-js/faker";
 import TestUserData from '../test-data/users/testuser1.json';
 import RepositoryService from "../api/services/RepositoryService";
+import path from "path/win32";
 
 test.describe('Create Repository Tests', () => {
-    const testUserName = TestUserData.userData.username;
+    test.use({ storageState: path.resolve(__dirname, '../.states/testuser1.json') });
+
+    let testUserName: string;
+
+    test.beforeAll(() => {
+        testUserName = TestUserData.userData.username;
+    });
+
     test.use({ storageState: `.states/testuser1.json` });
 
     test.beforeEach(async ({ app }) => {

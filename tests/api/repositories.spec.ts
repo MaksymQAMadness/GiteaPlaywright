@@ -1,10 +1,15 @@
 import test from "@playwright/test";
-import testUserData from '../../test-data/users/testuser1.json';
 import { faker } from "@faker-js/faker";
 import RepositoryService from "../../api/services/RepositoryService";
 
+let testUserData: any;
+
 test.describe("Repositories API tests", () => {
     let repositoryService: RepositoryService;
+
+    test.beforeAll(() => {
+        testUserData = require('../../test-data/users/testuser1.json');
+    });
 
     test.beforeEach(({ request }) => {
         repositoryService = new RepositoryService(request);
