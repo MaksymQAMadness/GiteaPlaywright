@@ -2,6 +2,8 @@ name: Run Playwright + Gitea in Docker
 
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [ main, master ]
 
 jobs:
   run-tests:
