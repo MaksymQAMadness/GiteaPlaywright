@@ -15,6 +15,20 @@ test('Register test user and save user state', async ({ app }) => {
     await app.registerPage.registerNewUser(testUsername, testUserEmail, testUserPassword, testUserPassword);
     await expect(app.dashboardPage.loggedInUserName).toHaveText(testUsername);
     await app.page.context().storageState({ path: `.states/testuser1.json` });
-    saveUserData({ username: testUsername, userEmail: testUserEmail, userPassword: testUserPassword }, './test-data/users/testuser1.json');
+
+    await app.page.locator('//div[@aria-label="Profile and Settings…"]').click();
+    await app.page.locator('//a[@href="/user/settings"]').click();
+    await app.page.locator('//a[@href="/user/settings/applications"]').click();
+    await app.page.locator('//input[@id="name"]').fill('Test OAuth App');
+    const checkboxes = app.page.locator('//*[contains(text() ,"Write")]');
+    for (const checkbox of await checkboxes.all()) {
+        await checkbox.click();
+    }
+    await app.page.locator('//*[contains(text(),"Generate Token")]').click();
+    const token = await app.page.locator('//div[@class="ui info message flash-message flash-info"]').innerText();
+    console.log('Generated Token:', token);
+
+
+    saveUserData({ username: testUsername, userEmail: testUserEmail, userPassword: testUserPassword, userToken: token }, './test-data/users/testuser1.json');
 
 })

@@ -1,6 +1,7 @@
 import { test, expect } from "../util/fixtures/app";
 import { faker } from "@faker-js/faker";
 import TestUserData from '../test-data/users/testuser1.json';
+import RepositoryService from "../api/services/RepositoryService";
 
 test.describe('Create Repository Tests', () => {
     const testUserName = TestUserData.userData.username;
@@ -43,3 +44,19 @@ test.describe('Create Repository Tests', () => {
 
 
 })
+
+test.afterAll(async ({ request }) => {
+    const repositoryService = new RepositoryService(request);
+    const response = await request.get(`/api/v1/user/repos`, {
+        headers: {
+            'Authorization': `token ${TestUserData.userData.userToken}`
+        }
+    });
+    const repos = await response.json();
+    for (const repo of repos) {
+        const repoName: string = repo.name;
+        const owner: string = repo.owner.login;
+        const response = await repositoryService.deleteRepository(owner, repoName, TestUserData.userData.userToken);
+        test.expect(response.status()).toBe(204);
+    }
+});
