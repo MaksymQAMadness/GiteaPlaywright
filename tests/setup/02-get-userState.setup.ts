@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { test, expect } from "../../util//fixtures/app";
+import { test, expect } from "../../util/fixtures/app";
 import { generateUniqueEmail } from '../../util/data-generation/emails';
 import saveUserData from '../../util/data-generation/saveUserData';
 
